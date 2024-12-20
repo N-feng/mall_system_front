@@ -10,6 +10,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/storesManagementDetail/index",
+          "pathName": "pages/storesManagementDetail/index",
+          "query": "shop_id=1",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/storesManagement/index",
+          "pathName": "pages/storesManagement/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/goodsManagement/index",
           "pathName": "pages/goodsManagement/index",
           "query": "",

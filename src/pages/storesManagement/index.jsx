@@ -15,7 +15,7 @@ import {
 import { fetchAuditList } from "@/api/audit";
 import Search from "@/components/search";
 import {mockImages, resolveAfter2Seconds} from "@/utils/utils";
-import {deleteGoods, fetchGoodsList} from "@/api";
+import {deleteGoods, fetchStoresList} from "@/api";
 import userStore from "@/store/userStore";
 import AuditItem from "./components/auditItem/index";
 import styles from "./index.less";
@@ -43,11 +43,12 @@ export default function GoodsManagement(props) {
           data = [],
           cur_page_num,
         }
-      } = await fetchGoodsList({
+      } = await fetchStoresList({
         page: customPage || currentPage + 1,
         page_size: 10,
-        search: search || searchVal,
-        type: tab,
+        // search: search || searchVal,
+        name: search || searchVal,
+        // type: tab,
       });
       const _isFinished = cur_page_num >= total_page;
 
@@ -106,10 +107,10 @@ export default function GoodsManagement(props) {
     onSearch("");
     stopPullDownRefresh();
   });
-  const clickAddBtn = (process_id) => {
-    console.log('process_id: ', process_id);
+  const clickAddBtn = (shop_id) => {
+    console.log('shop_id: ', shop_id);
     navigateTo({
-      url: `/pages/goodsManagementDetail/index?process_id=${props?.process_id || process_id}`,
+      url: `/pages/storesManagementDetail/index?shop_id=${props?.shop_id || shop_id}`,
     });
   }
   const clickDeleteBtn = (id) => {
@@ -153,7 +154,7 @@ export default function GoodsManagement(props) {
       </Tabs>
       <View className="searchWrapper" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <Search onSearch={onSearch} placeholder="请输入搜索内容" />
-        {
+        {/* {
           userInfo.role_id>1&&<Button
             plain hairline
             onClick={clickAddBtn}
@@ -163,7 +164,7 @@ export default function GoodsManagement(props) {
           >
             新增
           </Button>
-        }
+        } */}
       </View>
       <View className="container">
         <View>
@@ -188,16 +189,17 @@ export default function GoodsManagement(props) {
 
                 </View>
                 <View className="right">
-                  <View className="price">¥{a.price}</View>
-                  <View className="total">共{a.stock}件</View>
+                  <View className="total">{a.name}</View>
+                  {/* <View className="price">¥{a.price}</View> */}
+                  {/* <View className="total">共{a.stock}件</View> */}
                 </View>
               </View>
               <View className="bottom">
                 <View className="left">
                 </View>
                 <View className="right">
-                  <Button plain hairline round type="info" size="mini" onClick={()=>clickAddBtn(a.id)}>编辑商品</Button>
-                  <Button plain hairline round type="danger" size="mini" onClick={()=>clickDeleteBtn(a.id)}>删除商品</Button>
+                  <Button plain hairline round type="info" size="mini" onClick={()=>clickAddBtn(a.id)}>编辑店铺</Button>
+                  {/* <Button plain hairline round type="danger" size="mini" onClick={()=>clickDeleteBtn(a.id)}>删除商品</Button> */}
                 </View>
               </View>
             </View>

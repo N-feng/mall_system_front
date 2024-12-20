@@ -1,14 +1,14 @@
 import { View, Text, Button} from "@tarojs/components";
-import Taro, {useLoad, redirectTo, navigateTo, getEnv, ENV_TYPE, switchTab, setStorageSync} from "@tarojs/taro";
+import Taro, {useLoad, redirectTo, navigateTo, getEnv, ENV_TYPE, switchTab, setStorageSync, useShareAppMessage } from "@tarojs/taro";
 import userStore from "@/store/userStore";
 import {Image, Tag, Icon, Col, Row, Tab} from "@antmjs/vantui";
 import auditIcon from "@/assets/image/audit-icon.svg";
 import logoutIcon from "@/assets/image/logout-icon.svg";
 import {useEffect,useState} from "react";
 
-import "./index.less";
-import {fetchUserInfo} from "@/api";
 import {sellerTabList, userTabList} from "@/utils/utils";
+import { fetchUserInfo } from "@/api";
+import "./index.less";
 
 
 export default function Index() {
@@ -16,6 +16,7 @@ export default function Index() {
   const [userObj, setUserObj] = useState()
 
   const userInfo = userStore.getUserInfo();
+  console.log('userInfo: ', userInfo);
 
   const getUserInfo = () => {
     fetchUserInfo().then(res => {
@@ -85,6 +86,20 @@ export default function Index() {
     setAvatarUrl(e.detail.avatarUrl)
   }
 
+  useShareAppMessage((res) => {
+    if (res.from === 'button') {
+      // 来自页面内分享按钮
+    } else {
+      // 右上角分享好友
+    }
+
+    return {
+      // title: '来自星星的分享', // 分享卡片的title
+      title: userInfo.account,
+      path: '', // 分享卡片的小程序路径
+      imageUrl: '' // 分享卡片的图片链接
+    };
+  });
   return (
     <View className="personalCenter">
       <View className="user-info">
@@ -199,13 +214,26 @@ export default function Index() {
                   });
                 }}
                 >
-                  <Icon name="setting-o" size="32px" className="icon" />
+                  <Icon name="goods-collect-o" size="32px" className="icon" />
                   <Text className="text">商品管理</Text>
                 </View>
               </Col>
             }
             {
-              userInfo?.role_id === 3 && <Col span="6">
+              userInfo?.role_id === 2 && <Col span="6">
+                <View className="item" onClick={() => {
+                  navigateTo({
+                    url: `/pages/storesManagement/index`,
+                  });
+                }}
+                >
+                  <Icon name="shop-o" size="32px" className="icon" />
+                  <Text className="text">店铺管理</Text>
+                </View>
+              </Col>
+            }
+            {
+              userInfo?.role_id === 2 && <Col span="6">
                 <View className="item" onClick={() => {
                   navigateTo({
                     url: `/pages/verification/index`,

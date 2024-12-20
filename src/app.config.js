@@ -21,6 +21,8 @@ export default defineAppConfig({
     "pages/orderDetail/index",
     "pages/goodsManagement/index",
     "pages/goodsManagementDetail/index",
+    "pages/storesManagement/index",
+    "pages/storesManagementDetail/index",
     "pages/accountSetting/index",
     "pages/personalInfoDetail/index",
     "pages/verification/index",

@@ -10,6 +10,7 @@ export * from './user';
 export * from './visit';
 export * from './homePage';
 export * from './goods';
+export * from './stores';
 export * from './upload';
 export * from './order';
 export * from './verification';

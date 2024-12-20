@@ -52,7 +52,7 @@ const Com  = forwardRef((props, ref) => {
       {value && <View className="search--r"
         onClick={()=>{
           setValue("");
-          props?.onSearch?.("");
+          // props?.onSearch?.("");
         }}
       >
         <Icon color="#999" name="cross" size="14px" className="clear-icon"></Icon>

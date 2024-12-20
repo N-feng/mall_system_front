@@ -19,7 +19,7 @@ import { addIntention } from "@/api/intention";
 import FormSelect from "@/components/formSelect";
 import KeySearch from "@/pages/intentionDetail/components/keySearch";
 import styles from "@/pages/intentionDetail/index.module.less";
-import {addGoods} from "@/api";
+import {updateStores} from "@/api";
 import {uploadImage} from "@/api/upload";
 import CustomUploader from "@/components/customUploader";
 import {mockGoods} from "@/utils/utils";
@@ -34,13 +34,38 @@ export default function GoodsManagementDetail() {
   const [loading, setLoading] = useState(false);
   const [isPublished, setPublished] = useState(true);
   const formIt = Form.useForm();
+  const [shopInfo, setShopInfo] = useState({});
   const [productList] = useState(mockGoods())
   const [currentFile, setCurrentFile] = useState(null)
   const [currentFileId, setCurrentFileId] = useState(null)
 
   const ins = getCurrentInstance();
-  const { process_id } = ins.router.params;
-  console.log('process_id: ', process_id);
+  const { shop_id } = ins.router.params;
+  const baseURL = process.env.TARO_APP_BASE_API;
+  console.log('shop_id: ', shop_id);
+
+  const getShopInfo = useCallback(async () => {
+    // const { results = {} } = await getContact(id);
+    // setShopInfo(results);
+
+    setTimeout(() => {
+      formIt.setFields({
+        name: '商家的店铺1',
+        avatar: '1',
+        status: "closed",
+        description: '',
+        fileList: baseURL+'/static/uploaded_files/30585631-16df-4ab1-99a8-016d003fcd22.jpg'
+      });
+      setAvatarUrl(baseURL+'/static/uploaded_files/30585631-16df-4ab1-99a8-016d003fcd22.jpg')
+    }, 0);
+  }, [formIt, baseURL]);
+
+  useEffect(() => {
+    if (shop_id) {
+      getShopInfo();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shop_id]);
 
   useEffect(() => {
     formIt.registerRequiredMessageCallback((label) => {
@@ -107,14 +132,16 @@ image_id: 118*/
       setLoading(true);
       const _data = {
         ...rest,
-        file_id: currentFileId,
-        is_published: isPublished
+        // file_id: currentFileId,
+        // is_published: isPublished
+        avatar: '1',
+        // fileList: baseURL+'/static/uploaded_files/30585631-16df-4ab1-99a8-016d003fcd22.jpg'
       };
 
       console.log('currentFile', currentFile)
       console.log('currentFileId', currentFileId)
       console.log('_data', _data)
-      addGoods(_data).then((res)=>{
+      updateStores(_data).then((res)=>{
         const {message, status} = res
         showToast({ title: `${message}`, icon: status?"success":'error', duration: 2000 });
         // handleBack(data?.id);
@@ -250,29 +277,18 @@ image_id: 118*/
           >
             <View className="form-card">
               <FormItem
-                label="商品分类"
-                name="category"
-                required
-              >
-                <Field
-                  placeholderClass={styles["filed-placeholder"]}
-                  placeholder="请输入商品分类"
-                  border={false}
-                />
-              </FormItem>
-              <FormItem
-                label="商品名称"
+                label="店铺名称"
                 name="name"
                 required
               >
                 <Field
                   placeholderClass={styles["filed-placeholder"]}
-                  placeholder="请输入商品名称"
+                  placeholder="请输入店铺名称"
                   border={false}
                 />
               </FormItem>
               <FormItem
-                label="商品描述"
+                label="店铺描述"
                 name="description"
                 required
               >
@@ -280,44 +296,23 @@ image_id: 118*/
                   className={styles.textarea}
                   placeholderClass={styles["textarea-placeholder"]}
                   type="textarea"
-                  placeholder="请输入商品描述"
+                  placeholder="请输入店铺描述"
                   autosize={{ minHeight: "30px" }}
                   border={false}
                 />
               </FormItem>
               <FormItem
-                label="是否上架"
-                name="is_published"
+                label="店铺状态"
+                name="status"
                 // valueKey="checked"
               >
-                <Switch checked={isPublished} onChange={(e) => setPublished(e.detail)} />
-              </FormItem>
-              <FormItem
-                label="价格"
-                name="price"
-                required
-              >
-                <Field
-                  placeholderClass={styles["filed-placeholder"]}
-                  type="number"
-                  placeholder="请输入价格"
-                  border={false}
-                  renderButton="¥"
-                />
-              </FormItem>
-              <FormItem
-                label="商品库存"
-                name="stock"
-                required
-              >
-                <Field
-                  className={styles.textarea}
-                  placeholderClass={styles["filed-placeholder"]}
-                  type="number"
-                  placeholder="请输入商品库存"
-                  autosize={{ minHeight: "30px" }}
-                  border={false}
-                />
+                <RadioGroup
+                  direction="horizontal"
+                >
+                  <Radio name="open">营业</Radio>
+                  <Radio name="closed">关闭</Radio>
+                  <Radio name="pending">等待中</Radio>
+                </RadioGroup>
               </FormItem>
               <FormItem
                 name="file"
@@ -384,7 +379,7 @@ image_id: 118*/
               onClick={throttle(handleSubmit, 2 * 1000)}
               loading={loading}
             >
-              创建商品
+              修改店铺
             </Button>
           </Form>
         </View>
