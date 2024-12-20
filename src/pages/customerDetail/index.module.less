@@ -1,0 +1,77 @@
+.customerDetail {
+  position: relative;
+  display: inline-block;
+  width: 100vw;
+  min-height: 100vh;
+  color: #333;
+  background: linear-gradient(
+    180deg,
+    rgb(0 166 96 / 10%) 0%,
+    rgb(224 244 236 / 1%) 56%,
+    #f9fafc 100%,
+    #f9fafc 100%
+  );
+
+  .container {
+    position: relative;
+    margin: 40px 40px 200px;
+    color: #333;
+    border-radius: 10px;
+  }
+
+  :global {
+    .van-popup {
+      width: 100vw;
+      height: 80vh;
+      overflow: hidden;
+    }
+  }
+}
+
+.form {
+  :global {
+    .van-field {
+      padding: 0;
+      line-height: 25px;
+    }
+
+    .vant-form-formItem {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    .weui-input {
+      height: 48px;
+    }
+
+    .van-radio-group--horizontal {
+      width: 100%;
+    }
+
+    .van-radio--horizontal {
+      width: 50%;
+      height: 48px;
+      margin: 0 0 12px;
+    }
+
+    .van-radio__label {
+      line-height: 24px;
+    }
+
+    .van-button-submit {
+      width: 100%;
+      height: 96px;
+      margin: 40px 0 80px;
+      line-height: 96px;
+    }
+
+    .vant-form-formItem-controll {
+      margin-left: 24px;
+    }
+  }
+}
+
+.filed-placeholder {
+  color: #999;
+  font-size: 28px;
+}

@@ -1,0 +1,411 @@
+.auditDetail {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  color: #333;
+  background: #f9fafc;
+
+  .container {
+    flex: 1;
+    padding-bottom: 40px;
+    overflow-y: auto;
+  }
+
+  :global {
+    .van-popup {
+      width: 80vw;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .van-radio__icon {
+      margin-top: 3px;
+    }
+  }
+}
+
+.basic-info {
+  padding: 48px 40px 80px;
+  background: linear-gradient(to bottom, #fff, #dae8e1);
+
+  .info {
+    display: flex;
+    margin-bottom: 20px;
+
+    &--l {
+      flex: 2;
+      color: #999;
+      text-align: right;
+    }
+
+    &--r {
+      flex: 3;
+      padding-left: 20px;
+    }
+  }
+}
+
+.nickname {
+  margin-bottom: 40px;
+  color: @primary-color;
+  font-weight: 500;
+  font-size: 48px;
+  text-align: center;
+}
+
+.audit-card {
+  position: relative;
+  margin: 48px 40px 0;
+  padding: 0 32px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px 2px rgb(55 58 64 / 5%);
+
+  &--margin {
+    margin-top: -60px;
+  }
+}
+
+.title {
+  display: flex;
+  padding: 36px 0 24px;
+  color: #333;
+  font-weight: 500;
+  font-size: 30px;
+  border-bottom: 1px solid #f7f7f7;
+
+  &--l {
+    flex: 1;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 36px 0;
+  color: @primary-color;
+  border-top: 1px solid #f7f7f7;
+
+  &--l {
+    flex: 1;
+    text-align: left;
+  }
+}
+
+.goto-detail-btn {
+  color: @primary-color;
+  font-weight: 400;
+}
+
+.divider-line {
+  height: 1px;
+  margin: 28px 0;
+  background: #f7f7f7;
+}
+
+// 时间轴
+.custom-timeline {
+  padding: 48px 20px 0;
+}
+
+.item {
+  position: relative;
+  min-height: 100px;
+  padding: 0 24px 36px 50px;
+  border-left: 2px solid #eee;
+
+  &:nth-last-of-type(1) {
+    border-color: #fff;
+  }
+
+  .icon {
+    position: absolute;
+    top: -10px;
+    left: -30px;
+    width: 60px;
+    height: 60px;
+    background: url("@/assets/image/audit-unsolved.svg") no-repeat center center;
+    background-size: contain;
+    border-radius: 50%;
+
+    &--resolved {
+      background: url("@/assets/image/audit-solved.svg") no-repeat center center;
+      background-size: contain;
+    }
+
+    &--rejected {
+      background: url("@/assets/image/audit-rejected.svg") no-repeat center
+        center;
+      background-size: contain;
+    }
+
+    &--current {
+      background: url("@/assets/image/audit-wait.svg") no-repeat center center;
+      background-size: contain;
+    }
+  }
+}
+
+.name {
+  font-weight: 500;
+  font-size: 32px;
+}
+
+.task-name {
+  color: #666;
+  font-weight: 400;
+  font-size: 28px;
+}
+
+.task-remark {
+  margin-top: 24px;
+  padding: 24px;
+  color: #666;
+  font-size: 28px;
+  line-height: 36px;
+  background: #f7f7f7;
+}
+
+.nick-name {
+  margin-right: 24px;
+}
+
+.time {
+  margin-bottom: 24px;
+  color: #999;
+  font-size: 24px;
+}
+
+.contact {
+  color: #999;
+  font-size: 24px;
+
+  &-name {
+    padding: 0 10px;
+    color: #333;
+    font-size: 28px;
+  }
+}
+
+.audit-btns {
+  display: flex;
+  padding: 24px 48px 48px;
+}
+
+.audit-btn {
+  display: inline-flex;
+  flex: 2;
+  align-items: center;
+  justify-content: center;
+  height: 96px;
+  margin: 0 0 0 10px;
+  color: #fff;
+  background: @primary-color;
+  border-radius: 20px;
+
+  &:nth-of-type(1) {
+    flex: 1;
+    margin: 0 10px 0 0;
+    color: @primary-color;
+    background: rgb(0 0 0 / 0%);
+    border: 2px solid @primary-color;
+  }
+}
+
+.audit-info {
+  padding: 0 0 40px;
+
+  .info {
+    display: flex;
+    margin-top: 28px;
+    line-height: 48px;
+
+    &--l {
+      width: 240px;
+      color: #999;
+    }
+
+    &--r {
+      flex: 1;
+      padding-left: 10px;
+      overflow: hidden;
+      word-break: break-all;
+    }
+  }
+}
+
+.audit-remark {
+  margin: 0;
+  padding: 24px !important;
+  background: #f7f7f7 !important;
+
+  :global {
+    .taro-textarea {
+      background: #f7f7f7;
+    }
+  }
+}
+
+.detail {
+  position: relative;
+  display: inline-block;
+  width: 100vw;
+  min-height: 100vh;
+  color: #333;
+  background: linear-gradient(
+    180deg,
+    rgb(0 166 96 / 10%) 0%,
+    rgb(224 244 236 / 1%) 56%,
+    rgb(240 250 246 / 1%) 100%,
+    rgb(255 255 255 / 0%) 100%
+  );
+
+  .container {
+    position: relative;
+    margin-bottom: 40px;
+  }
+
+  .audit-card {
+    margin: 24px 40px 48px;
+  }
+}
+
+.sheet {
+  display: flex;
+  margin: 40px 0 0;
+  line-height: 28px;
+
+  &--l {
+    flex: 1;
+    width: 200px;
+  }
+
+  &--r {
+    padding-left: 20px;
+  }
+
+  &-name,
+  &-price {
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  &-type {
+    color: #999;
+    font-weight: 400;
+    font-size: 28px;
+  }
+
+  &-unit {
+    color: #666;
+  }
+
+  &-unit-price {
+    color: #666;
+  }
+
+  &-total {
+    font-weight: 500;
+    font-size: 32px;
+  }
+
+  &-tag {
+    display: inline-block;
+    margin: 0 12px 12px 0;
+    padding: 8px 12px;
+    line-height: 36px;
+    background: #f9fafc;
+  }
+}
+
+.content-title {
+  position: relative;
+  display: flex;
+  padding: 36px 0 24px 16px;
+  color: #333;
+  font-weight: 500;
+  font-size: 30px;
+
+  &::before {
+    position: absolute;
+    top: 38px;
+    left: 0;
+    width: 6px;
+    height: 28px;
+    background: @primary-color;
+    content: "";
+  }
+
+  &--l {
+    flex: 1;
+  }
+}
+
+.inner-sheet {
+  padding-bottom: 40px;
+
+  &-info {
+    margin-top: 12px;
+    padding: 0 24px;
+    background: #f9f9f9;
+    border-radius: 16px;
+  }
+
+  .title {
+    font-size: 28px;
+    border-bottom: 1px solid #f7f7f7;
+  }
+
+  .sheet {
+    line-height: 20px;
+
+    &-name,
+    &-price {
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 20px;
+    }
+
+    &-unit {
+      color: #666;
+    }
+
+    &-unit-price {
+      color: #666;
+    }
+
+    &-total {
+      font-size: 28px;
+    }
+  }
+
+  .divider-line {
+    background: #f0f0f0;
+  }
+
+  .footer {
+    border-top: 1px solid #f7f7f7;
+  }
+}
+
+.finished-tasks {
+  width: 100%;
+  padding-top: 380px;
+  background: url("@/assets/image/success-modal-bg.png") no-repeat center 40px;
+  background-size: 300px auto;
+
+  &-text-1 {
+    font-weight: 500;
+    font-size: 32px;
+    text-align: center;
+  }
+
+  &-text-2 {
+    margin: 24px 0 60px;
+    color: #666;
+    font-size: 28px;
+    text-align: center;
+  }
+}

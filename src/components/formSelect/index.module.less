@@ -1,0 +1,20 @@
+.select {
+  position: relative;
+  width: 100%;
+  padding-right: 10px;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 100%;
+    background: url("@/assets/image/arrow-right.svg") no-repeat center;
+    background-size: contain;
+    content: "";
+  }
+}
+
+.placeholder {
+  color: #999;
+}

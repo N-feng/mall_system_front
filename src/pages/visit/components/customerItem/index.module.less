@@ -1,0 +1,174 @@
+.customer {
+  margin-bottom: 24px;
+
+  &-info {
+    display: flex;
+    padding: 0 28px;
+
+    &--l {
+      flex: 1;
+    }
+
+    &--t {
+      display: flex;
+      align-items: center;
+      height: 32px;
+      padding: 28px 0;
+    }
+
+    &--r {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+
+  :global {
+    .van-popup {
+      width: 100vw;
+      height: 80vh;
+      overflow: hidden;
+    }
+  }
+}
+
+.signory {
+  margin-left: 16px;
+  color: #999;
+  font-size: 24px;
+}
+
+.customer-name {
+  display: inline;
+  font-weight: 500;
+  font-size: 30px;
+}
+
+.customer-level {
+  position: relative;
+  display: inline;
+  margin-left: 8px;
+}
+
+.customer-company {
+  padding: 0 0 28px;
+  line-height: 32px;
+}
+
+.customer--line {
+  margin: 0 24px;
+  border-bottom: 1px solid #eee;
+}
+
+.contact-list {
+  display: flex;
+  transition: height 0.2s ease-in-out;
+
+  &--l {
+    position: relative;
+    width: 200px;
+    padding-bottom: 80px;
+    overflow: hidden;
+    background: #f9fafc;
+  }
+
+  &--r {
+    flex: 1;
+    padding: 24px;
+    overflow: hidden;
+  }
+}
+
+.contact {
+  position: relative;
+  align-items: center;
+  padding: 36px 0;
+  padding-left: 24px;
+
+  &--active {
+    color: #00bf7e;
+    background: #fff;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 6px;
+      height: 40px;
+      background: @primary-color;
+      transform: translateY(-50%);
+      content: "";
+    }
+  }
+
+  &-info {
+    display: flex;
+    margin-bottom: 24px;
+    line-height: 48px;
+    word-break: break-all;
+
+    &--l {
+      width: 200px;
+      color: #666;
+      font-size: 24px;
+      line-height: 32px;
+
+      .icon {
+        margin-left: 8px;
+      }
+    }
+
+    &--r {
+      flex: 1;
+      color: #666;
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+}
+
+.add-contact {
+  color: #00bf7e;
+  text-align: right;
+
+  .icon {
+    margin-right: 8px;
+  }
+
+  &--disabled {
+    color: #ccc;
+  }
+}
+
+.species {
+  padding: 30px 0 16px;
+  line-height: 48px;
+  text-align: right;
+}
+
+.phone {
+  position: relative;
+  padding: 12px 0 16px;
+  color: #0084ff;
+  font-size: 36px;
+  line-height: 40px;
+  text-align: right;
+}
+
+.all-visit {
+  padding: 24px;
+  color: #00bf7e;
+  font-size: 24px;
+}
+
+.phone-icon {
+  margin-left: 12px;
+  color: #00bf7e;
+}
+
+.num {
+  padding: 0 8px;
+  color: #00bf7e;
+}

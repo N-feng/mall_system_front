@@ -1,0 +1,127 @@
+.visitDetail {
+  position: relative;
+  display: inline-block;
+  width: 100vw;
+  min-height: 100vh;
+  color: #333;
+  background: linear-gradient(
+    180deg,
+    rgb(0 166 96 / 10%) 0%,
+    rgb(224 244 236 / 1%) 56%,
+    #f9fafc 100%,
+    #f9fafc 100%
+  );
+
+  .container {
+    position: relative;
+    margin: 40px;
+    color: #333;
+    border-radius: 10px;
+  }
+
+  :global {
+    .van-popup {
+      width: 100vw;
+      overflow: hidden;
+    }
+  }
+}
+
+.form {
+  :global {
+    .van-field {
+      min-height: 25px;
+      padding: 0;
+      line-height: 25px;
+    }
+
+    .vant-form-formItem {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    .vant-form-label {
+      width: 200px;
+    }
+
+    .weui-input {
+      height: 48px;
+    }
+
+    .van-checkbox {
+      align-items: baseline;
+      margin: 0 0 12px;
+    }
+
+    .van-button-submit {
+      width: 100%;
+      margin: 40px 0 80px;
+    }
+
+    .vant-form-formItem-controll {
+      margin-left: 24px;
+    }
+  }
+}
+
+.add-intention-form {
+  margin: 0;
+  padding-top: 0;
+}
+
+.add-btn {
+  color: #07c160;
+
+  .icon {
+    margin-right: 10px;
+  }
+}
+
+.input {
+  width: 100%;
+}
+
+.textarea {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 48px;
+
+  &-placeholder {
+    color: #ccc;
+    font-size: 28px;
+  }
+}
+
+.item {
+  display: flex;
+  padding: 24px 12px;
+
+  &--l {
+    width: 200px;
+  }
+
+  &--r {
+    flex: 1;
+    margin-left: 12px;
+    font-weight: 500;
+  }
+}
+
+.remind-interval {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 440px;
+    transform: translateY(-50%);
+    content: "天提醒一次";
+  }
+}
+
+.intention-empty {
+  margin-bottom: 20px;
+  color: #999;
+  font-size: 24px;
+}

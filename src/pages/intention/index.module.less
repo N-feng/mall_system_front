@@ -1,0 +1,52 @@
+.visit {
+  position: relative;
+  display: inline-block;
+  width: 100vw;
+  min-height: 100vh;
+  color: #333;
+  background: linear-gradient(
+    180deg,
+    rgb(0 166 96 / 10%) 0%,
+    rgb(224 244 236 / 1%) 56%,
+    rgb(240 250 246 / 1%) 100%,
+    rgb(255 255 255 / 0%) 100%
+  );
+
+  .container {
+    position: relative;
+    padding: 0 40px;
+  }
+}
+
+.search {
+  padding: 28px 40px 0;
+
+  :global {
+    .van-search {
+      margin: 0;
+      padding: 28px 40px 0;
+    }
+
+    .search {
+      background: #fff;
+    }
+  }
+}
+
+.list {
+  margin: 28px 0;
+}
+
+.newCustomerBtn {
+  position: fixed;
+  right: 48px;
+  bottom: 100px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background: @primary-color;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgb(55 58 64 / 10%);
+}

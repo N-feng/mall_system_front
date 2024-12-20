@@ -1,0 +1,110 @@
+.customer {
+  margin: 0 0 24px;
+  padding: 0 28px;
+
+  &-info {
+    display: flex;
+
+    &--l {
+      flex: 1;
+    }
+
+    &--t {
+      display: flex;
+      align-items: center;
+      height: 32px;
+      padding: 28px 0;
+    }
+
+    &--r {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+
+  :global {
+    .van-popup {
+      width: 100vw;
+      height: 80vh;
+      overflow: hidden;
+    }
+  }
+}
+
+.signory {
+  margin-left: 16px;
+  color: #999;
+  font-size: 24px;
+}
+
+.customer-name {
+  display: inline;
+  font-weight: 500;
+  font-size: 32px;
+}
+
+.customer-level {
+  position: relative;
+  display: inline;
+  margin-left: 8px;
+}
+
+.customer-company {
+  padding: 0 0 28px;
+  line-height: 32px;
+}
+
+.line {
+  border-bottom: 1px solid #eee;
+}
+
+.add-contact {
+  color: #00bf7e;
+  text-align: right;
+
+  .icon {
+    margin-right: 8px;
+  }
+
+  &--disabled {
+    color: #ccc;
+  }
+}
+
+.phone-icon {
+  margin-left: 12px;
+  color: #00bf7e;
+}
+
+.project {
+  display: flex;
+  padding: 28px 0;
+
+  &-name {
+    flex: 1;
+    font-weight: 500;
+    font-size: 30px;
+  }
+
+  &-level {
+    margin-left: 20px;
+    font-size: 24px;
+  }
+
+  &-content {
+    padding: 0 0 28px;
+    color: #666;
+    font-size: 26px;
+    line-height: 36px;
+  }
+}
+
+.show-visit-btn {
+  padding: 24px 0;
+  color: #00bf7e;
+  font-size: 24px;
+  text-align: center;
+}

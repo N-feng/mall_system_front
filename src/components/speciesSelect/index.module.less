@@ -1,0 +1,86 @@
+.speciesSelect {
+  display: flex;
+  flex-direction: column;
+  height: 900px;
+  padding: 20px 40px;
+  overflow: hidden;
+}
+
+.found {
+  max-height: 300px;
+  padding: 20px 10px;
+  overflow-y: auto;
+
+  &-item {
+    line-height: 80px;
+    border-bottom: 1px solid #eee;
+  }
+}
+
+.select {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header {
+  margin: 20px 0;
+  border-bottom: 1px solid #eee;
+
+  &-item {
+    display: inline-block;
+    margin-right: 40px;
+    color: #000;
+    line-height: 80px;
+
+    &--active {
+      position: relative;
+
+      &::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: @primary-color;
+        border-radius: 6px;
+        content: "";
+      }
+    }
+  }
+}
+
+.content {
+  flex: 1;
+  overflow: hidden;
+
+  &-item {
+    display: flex;
+    justify-content: space-between;
+    line-height: 80px;
+
+    .icon {
+      line-height: 80px;
+    }
+
+    &--active {
+      color: @primary-color;
+    }
+
+    &--disabled {
+      color: #999;
+      cursor: not-allowed;
+    }
+  }
+
+  &-card {
+    display: none;
+
+    &--active {
+      display: block;
+      height: 100%;
+      overflow-y: auto;
+    }
+  }
+}

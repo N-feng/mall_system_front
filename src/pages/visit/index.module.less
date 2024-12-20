@@ -1,0 +1,38 @@
+.visit {
+  position: relative;
+  display: inline-block;
+  width: 100vw;
+  min-height: 100vh;
+  color: #333;
+  background: linear-gradient(
+    180deg,
+    rgb(0 166 96 / 10%) 0%,
+    rgb(224 244 236 / 1%) 56%,
+    rgb(240 250 246 / 1%) 100%,
+    rgb(255 255 255 / 0%) 100%
+  );
+
+  .container {
+    position: relative;
+    padding: 0 40px;
+  }
+}
+
+.search {
+  padding: 28px 40px 0;
+
+  :global {
+    .van-search {
+      margin: 0;
+      padding: 28px 40px 0;
+    }
+
+    .search {
+      background: #fff;
+    }
+  }
+}
+
+.list {
+  margin: 28px 0;
+}

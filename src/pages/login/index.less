@@ -1,0 +1,115 @@
+.login {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  color: #333;
+  background: linear-gradient(to bottom, #ebf8f2 0%, #f7fcfa 10%, #c3ded2);
+
+  .vant-form-formItem-wrapper {
+    background: rgb(0 0 0 / 0%);
+  }
+
+  .vant-form-formItem {
+    position: relative;
+    margin: 0 0 32px;
+    padding: 0;
+    background: rgb(0 0 0 / 0%);
+  }
+
+  .vant-form-formItem-controll {
+    margin: 0;
+  }
+
+  .vant-form-formItem-controll-item {
+    height: 44px;
+    padding: 28px 0 28px 140px;
+    overflow: hidden;
+    background: #fff;
+    border: 2px solid #eee;
+    border-radius: 16px;
+  }
+
+  .focus {
+    .vant-form-formItem-controll-item {
+      border: 2px solid @primary-color;
+    }
+  }
+
+  .vant-form-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 160px;
+    padding: 0 20px;
+    line-height: 104px;
+  }
+
+  .vant-form-message-show {
+    height: 40px;
+  }
+
+  ::placeholder {
+    color: #999;
+  }
+
+  .container {
+    position: relative;
+    padding: 0 48px;
+  }
+
+  .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .welcome-text {
+    margin: 300px 0 40px;
+    overflow: hidden;
+    font-size: 44px;
+  }
+
+  .welcome-text-1 {
+    display: block;
+  }
+
+  .welcome-text-2 {
+    display: block;
+    margin: 16px 0 40px;
+  }
+
+  .welcome-text-3 {
+    margin-left: 8px;
+    font-weight: 700;
+  }
+
+  .login-btn {
+    width: 100%;
+    height: 96px;
+    margin: 40px 0 24px;
+    font-size: 32px;
+    line-height: 96px;
+    border-radius: 16px;
+  }
+
+  .wechat-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: @primary-color;
+    font-size: 28px;
+
+    .icon {
+      margin-right: 8px;
+    }
+  }
+}
+
+.toggle-psw-btn {
+  .icon {
+    color: #333;
+  }
+}

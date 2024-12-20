@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="30px" viewBox="0 0 17 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>下面备份 16</title>
+    <defs>
+        <filter color-interpolation-filters="auto" id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.200000 0 0 0 0 0.200000 0 0 0 0 0.200000 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+        <filter color-interpolation-filters="auto" id="filter-2">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="采样-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="3-3管装-绑定样本" transform="translate(-41.000000, -117.000000)">
+            <g id="下面备份-16" transform="translate(41.000000, 117.000000)" filter="url(#filter-1)">
+                <g transform="translate(8.500000, 15.000000) scale(-1, 1) translate(-8.500000, -15.000000) " id="下面备份-14" filter="url(#filter-2)">
+                    <g transform="translate(8.500000, 15.000000) scale(-1, 1) rotate(90.000000) translate(-8.500000, -15.000000) translate(-6.500000, 6.500000)" id="Fill-1" fill="#FFFFFF">
+                        <path d="M8.06747392,23.5 C7.66115306,23.5 7.25483221,23.3436931 6.94817496,23.0341145 C6.34252689,22.422545 6.35172661,21.4406951 6.96964096,20.8397484 L19.6928502,8.50061222 L6.96964096,-3.8400415 C6.35172661,-4.4394707 6.34252689,-5.42283809 6.94817496,-6.03440762 C7.55382303,-6.64597716 8.54585923,-6.65659995 9.16530687,-6.05717076 L23.0292811,7.39280637 C23.3313385,7.68417448 23.5,8.0832881 23.5,8.50061222 C23.5,8.91793635 23.3313385,9.31553242 23.0292811,9.60841808 L9.16530687,23.0568777 C8.86018291,23.3527984 8.46306177,23.5 8.06747392,23.5" transform="translate(15.000000, 8.500000) rotate(90.000000) translate(-15.000000, -8.500000) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,226 @@
+:root {
+  font-family: "PingFangSC-Regular", "PingFang SC", sans-serif;
+}
+
+page,
+body {
+  box-sizing: border-box;
+  min-height: 100vh;
+  font-size: 28px;
+  font-family: "Microsoft YaHei",
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Helvetica Neue", "Arial", "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  line-height: 1;
+
+  /* reset vantUI */
+  .van-button--primary {
+    background-color: @primary-color;
+  }
+
+  .van-button-submit {
+    height: 96px;
+    line-height: 96px;
+  }
+
+  .van-dialog__confirm {
+    .van-button__text {
+      color: @primary-color;
+      font-weight: 500;
+    }
+  }
+
+  .van-skeleton {
+    padding: 20px 28px;
+  }
+
+  .van-sticky-wrap {
+    border-bottom: 1px solid #eee;
+  }
+
+  ::placeholder {
+    color: #999;
+  }
+
+  --switch-width: 93px;
+  --switch-height: 48px;
+  --switch-node-size: 48px;
+}
+
+.noscrollbar {
+  ::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+    color: transparent;
+  }
+}
+
+// 带阴影的盒子
+.card {
+  overflow: hidden;
+  color: #333;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px 2px rgb(55 58 64 / 5%);
+
+  &-title {
+    display: flex;
+    padding: 24px;
+    font-weight: 500;
+    font-size: 32px;
+
+    &--l {
+      flex: 1;
+    }
+  }
+}
+
+.text--green {
+  color: @primary-color;
+}
+
+.text--red {
+  color: @red-color !important;
+}
+
+.text--yellow {
+  color: @yellow-color;
+}
+
+.text--orange {
+  color: @yellow-color;
+}
+
+.text--grey {
+  color: @grey-color;
+}
+
+.font--500 {
+  font-weight: 500;
+}
+
+.custom-tag {
+  display: inline;
+  padding: 6px;
+  font-size: 22px;
+  border-radius: 4px;
+
+  &--green {
+    color: @green-color;
+    background: rgb(0 178 88 / 30%);
+  }
+
+  &--red {
+    color: @red-color;
+    background: rgb(222 96 104 / 30%);
+  }
+
+  &--yellow {
+    color: @yellow-color;
+    background: rgb(247 181 0 / 20%);
+  }
+
+  &--grey {
+    color: @grey-color;
+    background: #f1f1f1;
+  }
+}
+
+.form {
+  &-title {
+    display: inline-block;
+    margin: 12px 0 24px 4px;
+    font-weight: 500;
+    font-size: 32px;
+  }
+
+  .form-item {
+    &--disabled {
+      position: relative;
+
+      .van-cell::after {
+        display: none;
+      }
+
+      .van-field__control--disabled {
+        -webkit-text-fill-color: #999;
+      }
+
+      .vant-form-label {
+        color: #999;
+      }
+    }
+
+    &::after {
+      display: none;
+    }
+
+    .vant-form-label {
+      color: #333;
+    }
+  }
+
+  .vant-form-label {
+    width: 160px;
+    color: inherit;
+  }
+}
+
+.form-card {
+  margin-bottom: 36px;
+  padding: 12px 24px;
+  overflow: hidden;
+  color: #333;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px 2px rgb(55 58 64 / 10%);
+
+  .hidden {
+    display: none;
+  }
+
+  &.hidden {
+    display: none;
+  }
+
+  &.exist {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      content: "";
+    }
+
+    .vant-form-label {
+      color: #999;
+    }
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.cascader {
+  .van-cascader__title {
+    justify-content: flex-start;
+    padding-top: 40px;
+    font-size: 32px;
+  }
+
+  .van-popup__close-icon--top-right {
+    top: 40px;
+    right: 40px;
+  }
+}
+
+.divider-line {
+  height: 1px;
+  margin: 28px 0;
+  background: #eee;
+}

@@ -1,0 +1,37 @@
+.toast {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+
+  :global {
+    .van-skeleton__content {
+      overflow-y: auto;
+    }
+
+    .van-popup__close-icon--top-right {
+      top: 40px;
+      right: 40px;
+    }
+  }
+}
+
+.title {
+  margin: 28px;
+  font-weight: 500;
+  font-size: 32px;
+  text-align: center;
+}
+
+.content {
+  padding: 28px;
+}
+
+.footer {
+  display: block;
+  height: 88px;
+  color: #666;
+  font-size: 32px;
+  line-height: 88px;
+  text-align: center;
+  border-top: 1px solid #eee;
+}

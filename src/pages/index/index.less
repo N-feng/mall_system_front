@@ -1,0 +1,163 @@
+.index {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  color: #333;
+  background: linear-gradient(
+    180deg,
+    rgb(0 166 96 / 10%) 0%,
+    rgb(224 244 236 / 1%) 56%,
+    rgb(240 250 246 / 1%) 100%,
+    rgb(255 255 255 / 0%) 100%
+  );
+
+  .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-top: 1rem;
+  }
+
+  .van-row-wrapper {
+    overflow-y: auto;
+  }
+
+  .welcome-text {
+    padding: 0 40px;
+    font-size: 36px;
+    line-height: 56px;
+
+    .text-1 {
+      font-weight: 700;
+    }
+
+    .text-2 {
+      font-size: 28px;
+    }
+  }
+
+  .menu {
+    margin: 48px 0;
+    padding: 0 40px;
+  }
+
+  .menu-item {
+    margin-bottom: 20px;
+    padding: 36px 24px;
+    font-size: 28px;
+    text-align: center;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px 2px rgb(55 58 64 / 6%);
+
+    &-title {
+      margin: 28px auto 0;
+    }
+  }
+
+  .audit {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    overflow: hidden;
+    .audit-header {
+      display: flex;
+      margin-bottom: 10px;
+      padding: 0 40px;
+
+      &--l {
+        position: relative;
+        flex: 1;
+        padding-left: 18px;
+        font-size: 34px;
+
+        &::before {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 6px;
+          height: 36px;
+          background: @primary-color;
+          border-radius: 3px;
+          content: "";
+        }
+      }
+
+      &--r {
+        position: relative;
+        padding-right: 22px;
+        color: #666;
+        font-size: 28px;
+        line-height: 32px;
+
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 10px;
+          height: 100%;
+          background: url("@/assets/image/arrow-right.svg") no-repeat center;
+          background-size: contain;
+          content: "";
+        }
+      }
+    }
+    .searchWrapper {
+      padding: 10px 40px 0;
+    }
+  }
+
+
+
+  .audit-list {
+    flex: 1;
+    padding: 10px 40px;
+    overflow-y: auto;
+  }
+}
+.van-demo-goods-item-wrapper {
+  background: #fff;
+  border-radius: .2rem;
+  height: fit-content;
+  overflow: hidden;
+  position: relative;
+  .img {
+    border-radius: 5px;
+    height: 300px;
+    width: 100%;
+  }
+  .title{
+    color: #666;
+    font-size: 30px;
+    line-height: 1.2;
+    padding: 8px;
+    text-align: left;
+  }
+  .cutPrice {
+    background-color: #fff0f6;
+    border-radius: .15rem;
+    color: #ff2078;
+    display: inline-block;
+    font-size: 24px;
+    margin-bottom: .3rem;
+    margin-left: .45rem;
+    padding: .15rem .2rem;
+  }
+  .priceWrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .price {
+      color: var(--card-price-color, #ee0a24);
+      font-size: 28px;
+      padding: 8px;
+      text-align: left;
+    }
+    .btn{
+      color: var(--card-price-color, #ee0a24);
+      padding: 8px;
+    }
+  }
+
+}

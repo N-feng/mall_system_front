@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="58px" height="59px" viewBox="0 0 58 59" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 27</title>
+    <defs>
+        <linearGradient x1="90.1686973%" y1="1.61235232%" x2="-1.31644166%" y2="110.524566%" id="linearGradient-1">
+            <stop stop-color="#FFC3C6" offset="0%"></stop>
+            <stop stop-color="#F65255" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-16.5303927%" y1="119.15226%" x2="92.9808695%" y2="3.36662938%" id="linearGradient-2">
+            <stop stop-color="#F96163" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="3.78474063%" y1="105.895692%" x2="91.1620247%" y2="0%" id="linearGradient-3">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0.0546328671%"></stop>
+            <stop stop-color="#FA7579" stop-opacity="0.2" offset="100%"></stop>
+            <stop stop-color="#FA7377" offset="100%"></stop>
+            <stop stop-color="#FA7579" stop-opacity="0.2" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-4" x="0" y="7" width="49" height="50.9669195" rx="8.09302326"></rect>
+        <filter x="-4.1%" y="-3.9%" width="108.2%" height="107.8%" filterUnits="objectBoundingBox" id="filter-5">
+            <feGaussianBlur stdDeviation="1.5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="-1" dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.4 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+        <polygon id="path-6" points="0 0 22 0 22 20 0 20"></polygon>
+        <linearGradient x1="38.0461998%" y1="13.9610495%" x2="68.2765659%" y2="91.322314%" id="linearGradient-8">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F9D2D3" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1-1首页" transform="translate(-262.000000, -320.000000)">
+            <g id="编组-27" transform="translate(262.000000, 320.720930)">
+                <g id="编组-2备份-2">
+                    <rect id="矩形" fill="url(#linearGradient-1)" x="13.8735149" y="0" width="44.1264851" height="46.2173864" rx="8.09302326"></rect>
+                    <g id="矩形">
+                        <use fill-opacity="0.3" fill="url(#linearGradient-2)" fill-rule="evenodd" xlink:href="#path-4"></use>
+                        <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
+                        <rect stroke="url(#linearGradient-3)" stroke-width="0.5" stroke-linejoin="square" x="0.25" y="7.25" width="48.5" height="50.4669195" rx="8.09302326"></rect>
+                    </g>
+                </g>
+                <g id="编组" transform="translate(13.000000, 22.279070)">
+                    <mask id="mask-7" fill="white">
+                        <use xlink:href="#path-6"></use>
+                    </mask>
+                    <g id="Clip-2"></g>
+                    <path d="M17.2491694,14.0692824 C16.420598,14.0692824 15.6724252,13.5804148 15.3495017,12.8264433 L14.0704319,9.85058533 C13.8850498,9.41815084 14.0039867,8.92337753 14.3574751,8.60971488 C15.620598,7.48958487 16.3056478,5.74869155 15.9036545,3.86737184 C15.5049834,2.00508188 13.9800664,0.500419834 12.0936877,0.111294413 C8.85913621,-0.555402769 6.01063123,1.86399931 6.01063123,4.94156799 C6.01063123,6.4232631 6.67641196,7.7441897 7.72358804,8.64711817 C8.08837209,8.96209322 8.21727575,9.4634285 8.02790698,9.90373737 L6.77209302,12.8264433 C6.44916944,13.5804148 5.70099668,14.0692824 4.87242525,14.0692824 L1.01528239,14.0692824 C0.45448505,14.0692824 0,14.5181218 0,15.0712967 L0,18.9979856 C0,19.5511606 0.45448505,20 1.01528239,20 L20.9853821,20 C21.545515,20 22,19.5511606 22,18.9979856 L22,15.0712967 C22,14.518778 21.5461794,14.0692824 20.9853821,14.0692824 L17.2491694,14.0692824 Z" id="Fill-1" fill="url(#linearGradient-8)" mask="url(#mask-7)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

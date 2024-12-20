@@ -1,0 +1,59 @@
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0 40px;
+  overflow: hidden;
+
+  :global {
+    .van-button-submit {
+      width: 100%;
+      margin: 40px 0 100px;
+    }
+  }
+}
+
+.form {
+  flex: 1;
+  overflow-y: auto;
+
+  :global {
+    .vant-form-label {
+      width: 200px;
+    }
+
+    .van-field {
+      min-height: 25px;
+      padding: 0;
+      line-height: 25px;
+    }
+
+    .vant-form-formItem {
+      margin-right: 0;
+      margin-left: 0;
+    }
+
+    .van-radio {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.preview {
+  margin-top: 20px;
+}
+
+.item {
+  display: flex;
+  padding: 30px 0;
+
+  &--l {
+    color: #666;
+  }
+
+  &--r {
+    flex: 1;
+    font-weight: 500;
+    text-align: right;
+  }
+}

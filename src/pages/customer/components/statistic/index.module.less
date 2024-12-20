@@ -1,0 +1,118 @@
+.statistic {
+  &-title {
+    display: flex;
+    margin-bottom: 24px;
+    font-size: 32px;
+
+    &--l {
+      flex: 1;
+    }
+
+    &--r {
+      position: relative;
+      height: 24px;
+      padding-right: 20px;
+      color: #999;
+      font-weight: 400;
+      font-size: 24px;
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 10px;
+        height: 100%;
+        background: url("@/assets/image/arrow-right.svg") no-repeat right center;
+        background-size: 10px auto;
+        transform: translate(90deg);
+        content: "";
+      }
+    }
+  }
+
+  &-content {
+    display: flex;
+  }
+}
+
+.toast-msg {
+  line-height: 64px;
+}
+
+.total-cash {
+  display: block;
+  font-weight: 500;
+  line-height: 64px;
+}
+
+.card {
+  flex: 1;
+  padding: 28px 12px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px 2px rgb(55 58 64 / 5%);
+
+  &--green {
+    flex: 1.2;
+  }
+
+  &--orange {
+    .title {
+      &::before {
+        background: url("@/assets/image/cash-special.svg") no-repeat 0 0;
+        background-size: contain;
+        opacity: 0.3;
+        content: "";
+      }
+    }
+  }
+
+  &--red {
+    flex: 1.2;
+    margin: 0 8px;
+
+    .title {
+      &::before {
+        background: url("@/assets/image/cash-unconfirm.svg") no-repeat 0 0;
+        background-size: contain;
+        opacity: 0.3;
+        content: "";
+      }
+    }
+  }
+
+  .num {
+    font-weight: 500;
+    font-size: 30px;
+  }
+}
+
+.title {
+  position: relative;
+  margin-bottom: 30px;
+  color: #999;
+  font-size: 26px;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    background: url("@/assets/image/info-icon.png") no-repeat 0 0;
+    background-size: contain;
+    content: "";
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: url("@/assets/image/cash-confirm.svg") no-repeat 0 0;
+    background-size: contain;
+    opacity: 0.3;
+    content: "";
+  }
+}

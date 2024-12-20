@@ -1,0 +1,23 @@
+.popup {
+  display: flex;
+  flex-direction: column;
+
+  :global {
+    .van-skeleton__content {
+      overflow-y: auto;
+    }
+
+    .van-popup__close-icon--top-right {
+      top: 40px;
+      right: 40px;
+      z-index: 0;
+    }
+  }
+}
+
+.title {
+  margin: 40px;
+  margin-bottom: 24px;
+  font-weight: 500;
+  font-size: 32px;
+}
