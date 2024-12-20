@@ -2,15 +2,15 @@
  * @Description: 新增客户编辑页
  */
 import {useCallback, useState, useEffect, useRef} from "react";
-import { View } from "@tarojs/components";
-import { navigateBack, getCurrentPages, showToast } from "@tarojs/taro";
+import { View, Button as TaroButton } from "@tarojs/components";
+import { navigateBack, getCurrentPages, showToast, uploadFile } from "@tarojs/taro";
 import {
   Form,
   FormItem,
   Button,
   Field,
   RadioGroup,
-  Radio, Uploader, Toast, Switch,
+  Radio, Uploader, Toast, Switch, Image, Icon,
 } from "@antmjs/vantui";
 import cns from "classnames";
 import { throttle } from "lodash";
@@ -23,6 +23,8 @@ import {addGoods, addVerification} from "@/api";
 import {uploadImage} from "@/api/upload";
 import CustomUploader from "@/components/customUploader";
 import {mockGoods} from "@/utils/utils";
+import userStore from "@/store/userStore";
+import {APP_API_KEY_PREFIX} from "@/utils/constant";
 
 export default function AddVerificationDetail() {
   const [keySearchVisible, setKeySearchVisible] = useState(false);
@@ -42,6 +44,104 @@ export default function AddVerificationDetail() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const [avatarUrl1, setAvatarUrl1] = useState("")
+  const handleChooseAvatar1 = async (e) => {
+    console.log(e)
+    setAvatarUrl1(e.detail.avatarUrl)
+    uploadAvatar1(e.detail.avatarUrl)
+  }
+  const uploadAvatar1 = async (url) => {
+    const { token = "" } = userStore.getUserInfo();
+    try {
+      // 1. 上传到服务器
+      const uploadResult = await uploadFile({
+        url: process.env.TARO_APP_BASE_API+'/common/upload/create_file/',
+        filePath: url,
+        name: 'file',
+        header: {Authorization: `${APP_API_KEY_PREFIX} ${token}`,},
+        formData: {
+          file_type: 'goods',
+          is_common: false
+        }
+      })
+
+      /*file_name: "/static/uploaded_files/lYzuMLiENvFp8c9bdc3c8bc388d6cc06377ac7b12787.jpg"
+id: 118
+image_id: 118*/
+      // 2. 处理上传结果
+      const serverAvatarUrl = JSON.parse(uploadResult.data).avatarUrl
+      const tempData = JSON.parse(uploadResult.data)
+      if(tempData){
+        const {data, message, status} = tempData
+        console.log('uploadResult',uploadResult)
+        console.log('uploadResult?.data?.id',data?.id)
+        // setCurrentFileId(data?.id)
+        formRef.current?.setFieldsValue('id_card_front', data?.id)
+        showToast({ title: `${message}`, icon: status?"success":'error', duration: 2000 });
+        /*if(){
+          formIt.setErrorMessage('userName', '这是自定义错误xxxxx')
+        }*/
+      }
+
+
+      // 3. 更新用户信息
+      // await updateUserProfile({ avatarUrl: serverAvatarUrl })
+
+      return serverAvatarUrl
+    } catch (error) {
+      console.error('上传头像失败', error)
+    }
+  }
+
+  const [avatarUrl2, setAvatarUrl2] = useState("")
+  const handleChooseAvatar2 = async (e) => {
+    console.log(e)
+    setAvatarUrl2(e.detail.avatarUrl)
+    uploadAvatar2(e.detail.avatarUrl)
+  }
+  const uploadAvatar2 = async (url) => {
+    const { token = "" } = userStore.getUserInfo();
+    try {
+      // 1. 上传到服务器
+      const uploadResult = await uploadFile({
+        url: process.env.TARO_APP_BASE_API+'/common/upload/create_file/',
+        filePath: url,
+        name: 'file',
+        header: {Authorization: `${APP_API_KEY_PREFIX} ${token}`,},
+        formData: {
+          file_type: 'goods',
+          is_common: false
+        }
+      })
+
+      /*file_name: "/static/uploaded_files/lYzuMLiENvFp8c9bdc3c8bc388d6cc06377ac7b12787.jpg"
+id: 118
+image_id: 118*/
+      // 2. 处理上传结果
+      const serverAvatarUrl = JSON.parse(uploadResult.data).avatarUrl
+      const tempData = JSON.parse(uploadResult.data)
+      if(tempData){
+        const {data, message, status} = tempData
+        console.log('uploadResult',uploadResult)
+        console.log('uploadResult?.data?.id',data?.id)
+        // setCurrentFileId(data?.id)
+        formRef.current?.setFieldsValue('id_card_back', data?.id)
+        showToast({ title: `${message}`, icon: status?"success":'error', duration: 2000 });
+        /*if(){
+          formIt.setErrorMessage('userName', '这是自定义错误xxxxx')
+        }*/
+      }
+
+
+      // 3. 更新用户信息
+      // await updateUserProfile({ avatarUrl: serverAvatarUrl })
+
+      return serverAvatarUrl
+    } catch (error) {
+      console.error('上传头像失败', error)
+    }
+  }
+
   const handleSubmit = () => {
     formIt.validateFields((errorMessage, fieldValues) => {
       console.log(fieldValues);
@@ -55,8 +155,8 @@ export default function AddVerificationDetail() {
       setLoading(true);
       const _data = {
         ...rest,
-        id_card_front: currentFileId1,
-        id_card_back: currentFileId2,
+        // id_card_front: currentFileId1,
+        // id_card_back: currentFileId2,
       };
       console.log('_data', _data)
 
@@ -66,6 +166,7 @@ export default function AddVerificationDetail() {
         const {message, status} = res
         showToast({ title: `${message}`, icon: status?"success":'error', duration: 2000 });
         // handleBack(data?.id);
+        handleBack();
       }).finally(() => {
         setLoading(false);
       })
@@ -102,40 +203,43 @@ export default function AddVerificationDetail() {
     fileList1 = fileList1.concat(file)
 
     console.log(file, fileList1)
-    const formData = new FormData();
-    formData.append('is_common', false);
-    formData.append('file_type', 'user');
-    formData.append('file', file.originalFileObj);
+    console.log('process.env.TARO_ENV', process.env.TARO_ENV)
+    console.log('process.env.TARO_ENV === \'weapp\'', process.env.TARO_ENV === 'weapp')
+    // const formData = new FormData();
+    // formData.append('is_common', false);
+    // formData.append('file_type', 'user');
+    // formData.append('file', file.originalFileObj);
 
-    return uploadImage(formData).then((res) => {
-      if (res) {
-        const { data, message, status } = res
-        console.log('uploadImage.res', res)
-        console.log('uploadImage.res.data', res.data)
-        console.log('uploadImage.res.data.id', res.data.id)
-        setCurrentFileId1(res.data.id)
+    // return uploadImage(formData).then((res) => {
+    //   if (res) {
+    //     const { data, message, status } = res
+    //     console.log('uploadImage.res', res)
+    //     console.log('uploadImage.res.data', res.data)
+    //     console.log('uploadImage.res.data.id', res.data.id)
+    //     setCurrentFileId1(res.data.id)
+    //     formIt.setFieldsValue("id_card_front", res.data.id)
 
-        if (status) {
-          showToast({
-            title: message,
-            icon: "none",
-            duration: 1000,
-          });
-        } else {
-          showToast({
-            title: message,
-            icon: "error",
-            duration: 1000,
-          });
-        }
-      }
-      return fileList1;
-    }).catch((error) => {
-      Toast.clear();
-      throw error;
-    }).finally(() => {
-      Toast.clear()
-    });
+    //     if (status) {
+    //       showToast({
+    //         title: message,
+    //         icon: "none",
+    //         duration: 1000,
+    //       });
+    //     } else {
+    //       showToast({
+    //         title: message,
+    //         icon: "error",
+    //         duration: 1000,
+    //       });
+    //     }
+    //   }
+    //   return fileList1;
+    // }).catch((error) => {
+    //   Toast.clear();
+    //   throw error;
+    // }).finally(() => {
+    //   Toast.clear()
+    // });
   }
   const valueFormatUpload2 = (event, formName, instance) => {
     Toast.loading('上传中...')
@@ -226,23 +330,55 @@ export default function AddVerificationDetail() {
                 required
                 // layout="vertical"
                 label="身份证正面(图片大小不得大于 3M)"
-                valueKey="fileList"
+                valueKey="id_card_front"
                 valueFormat={valueFormatUpload1}
                 trigger="onAfterRead"
                 validateTrigger="onAfterRead"
-                rules={{
-                  rule: (values, call) => {
-                    values.forEach((item, index) => {
-                      // console.log('item',item)
-                      if (item.size > 3 * 1024 * 1024) {
-                        return call(`图片(${index + 1})大小不得大于 3M`)
-                      }
-                      call('')
-                    })
-                  },
-                }}
+                // rules={{
+                //   rule: (values, call) => {
+                //     values.forEach((item, index) => {
+                //       // console.log('item',item)
+                //       if (item.size > 3 * 1024 * 1024) {
+                //         return call(`图片(${index + 1})大小不得大于 3M`)
+                //       }
+                //       call('')
+                //     })
+                //   },
+                // }}
               >
-                <Uploader name="file1" accept="image" onDelete={deleteFile1} maxCount={1}></Uploader>
+                {
+                  process.env.TARO_ENV === 'weapp' && <TaroButton
+                    className="no-border"
+                    style={{backgroundColor: 'rgb(247, 248, 250)', width: '88px', height: '88px',
+                      display: 'flex', justifyContent: 'center', alignItems: 'center',
+                      padding: '0',
+                      marginLeft: '0',
+                    }}
+                    buttonStyle="border: none;"
+                    open-type="chooseAvatar"
+                    onChooseAvatar={handleChooseAvatar1}
+                  >
+                    {avatarUrl1 ? (
+                      <Image
+                        // round
+                        width="100%"
+                        height="100%"
+                        src={avatarUrl1}
+                        // onClick={handleGetUserInfo}
+                      />
+                    ) : (
+                      <Icon
+                        name="photo-o"
+                        size="26px"
+                        className="van-icon van-icon-photograph van-uploader__upload-icon"
+                      ></Icon>
+                    )}
+                  </TaroButton>
+                }
+                {
+                  process.env.TARO_ENV === 'h5' && <Uploader name="file1" accept="image" onDelete={deleteFile1} maxCount={1}></Uploader>
+                }
+                {/* <Uploader name="file1" accept="image" onDelete={deleteFile1} maxCount={1}></Uploader> */}
               </FormItem>
 
               <FormItem
@@ -251,26 +387,58 @@ export default function AddVerificationDetail() {
                 required
                 // layout="vertical"
                 label="身份证反面(图片大小不得大于 3M)"
-                valueKey="fileList"
+                valueKey="id_card_back"
                 valueFormat={valueFormatUpload2}
                 trigger="onAfterRead"
                 validateTrigger="onAfterRead"
-                rules={{
-                  rule: (values, call) => {
-                    values.forEach((item, index) => {
-                      console.log('item',item)
-                      if (item.size > 3 * 1024 * 1024) {
-                        return call(`图片(${index + 1})大小不得大于 3M`)
-                      }
-                      call('')
-                    })
-                  },
-                }}
+                // rules={{
+                //   rule: (values, call) => {
+                //     values.forEach((item, index) => {
+                //       console.log('item',item)
+                //       if (item.size > 3 * 1024 * 1024) {
+                //         return call(`图片(${index + 1})大小不得大于 3M`)
+                //       }
+                //       call('')
+                //     })
+                //   },
+                // }}
               >
-                <Uploader name="file2" accept="image" onDelete={deleteFile2} maxCount={1}></Uploader>
+                {
+                  process.env.TARO_ENV === 'weapp' && <TaroButton
+                    className="no-border"
+                    style={{backgroundColor: 'rgb(247, 248, 250)', width: '88px', height: '88px',
+                      display: 'flex', justifyContent: 'center', alignItems: 'center',
+                      padding: '0',
+                      marginLeft: '0',
+                    }}
+                    buttonStyle="border: none;"
+                    open-type="chooseAvatar"
+                    onChooseAvatar={handleChooseAvatar2}
+                  >
+                    {avatarUrl2 ? (
+                      <Image
+                        // round
+                        width="100%"
+                        height="100%"
+                        src={avatarUrl2}
+                        // onClick={handleGetUserInfo}
+                      />
+                    ) : (
+                      <Icon
+                        name="photo-o"
+                        size="26px"
+                        className="van-icon van-icon-photograph van-uploader__upload-icon"
+                      ></Icon>
+                    )}
+                  </TaroButton>
+                }
+                {
+                  process.env.TARO_ENV === 'h5' && <Uploader name="file1" accept="image" onDelete={deleteFile2} maxCount={1}></Uploader>
+                }
+                {/* <Uploader name="file2" accept="image" onDelete={deleteFile2} maxCount={1}></Uploader> */}
               </FormItem>
               <FormItem
-                label="联系人信息"
+                label="联系方式"
                 name="contact_info"
                 required
               >
@@ -278,7 +446,7 @@ export default function AddVerificationDetail() {
                   className={styles.textarea}
                   placeholderClass={styles["textarea-placeholder"]}
                   type="textarea"
-                  placeholder="请输入联系人信息"
+                  placeholder="请输入联系方式"
                   autosize={{ minHeight: "30px" }}
                   border={false}
                 />

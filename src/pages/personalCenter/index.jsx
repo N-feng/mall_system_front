@@ -195,17 +195,19 @@ export default function Index() {
           </View>
 
           <Row className="iconsWrapper">
-            <Col span="6">
-              <View className="item" onClick={() => {
-                navigateTo({
-                  url: `/pages/cart/index`,
-                });
-              }}
-              >
-                <Icon name="cart-o" size="32px" className="icon" />
-                <Text className="text">购物车</Text>
-              </View>
-            </Col>
+            {
+              userInfo?.role_id === 1 && <Col span="6">
+                <View className="item" onClick={() => {
+                  navigateTo({
+                    url: `/pages/cart/index`,
+                  });
+                }}
+                >
+                  <Icon name="cart-o" size="32px" className="icon" />
+                  <Text className="text">购物车</Text>
+                </View>
+              </Col>
+            }
             {
               userInfo?.role_id === 2 && <Col span="6">
                 <View className="item" onClick={() => {
@@ -236,12 +238,25 @@ export default function Index() {
               userInfo?.role_id === 2 && <Col span="6">
                 <View className="item" onClick={() => {
                   navigateTo({
-                    url: `/pages/verification/index`,
+                    url: `/pages/verificationAdd/index`,
                   });
                 }}
                 >
                   <Icon name="certificate" size="32px" className="icon" />
                   <Text className="text">实名认证</Text>
+                </View>
+              </Col>
+            }
+            {
+              userInfo?.role_id === 3 && <Col span="6">
+                <View className="item" onClick={() => {
+                  navigateTo({
+                    url: `/pages/verification/index`,
+                  });
+                }}
+                >
+                  <Icon name="certificate" size="32px" className="icon" />
+                  <Text className="text">实名管理</Text>
                 </View>
               </Col>
             }

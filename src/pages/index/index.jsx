@@ -22,12 +22,12 @@ import indexIcon2 from "@/assets/image/index-icon-2.svg";
 import indexIcon3 from "@/assets/image/index-icon-3.svg";
 import Empty from "@/components/empty";
 import {fetchAuditList, fetchGoodsList} from "@/api/index";
-import AuditItem from "../audit/components/auditItem";
 import Search from "@/components/search";
 import {fetchHomePageList} from "@/api/homePage";
+import {addOrRemoveCart} from "@/api/cart";
+import AuditItem from "../audit/components/auditItem";
 
 import "./index.less";
-import {addOrRemoveCart} from "@/api/cart";
 
 
 const MenuList = [
@@ -171,12 +171,13 @@ export default function Index() {
     return (
       <View className="van-demo-goods-item-wrapper">
         <View className="van-demo-goods-item" onClick={clickDetailBtn}>
-          <TaroImage
+          {/* <Image
             src={baseURL+item?.file_path}
             className="img"
-            mode={getEnv() === ENV_TYPE.WEAPP?"aspectFill":'widthFix'}
+            // mode={getEnv() === ENV_TYPE.WEAPP?"aspectFill":'widthFix'}
             // onLoad={forceResize} // 当图片加载完成时触发forceResize
-          />
+          /> */}
+          <View style={{ backgroundImage: `url(${baseURL+item?.file_path})` }} className="img"></View>
           <View className="title">
             {
               item.description.length>10?<Ellipsis rows={2} hiddenAction>

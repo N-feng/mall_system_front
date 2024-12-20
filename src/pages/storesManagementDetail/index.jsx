@@ -107,6 +107,7 @@ image_id: 118*/
         console.log('uploadResult',uploadResult)
         console.log('uploadResult?.data?.id',data?.id)
         setCurrentFileId(data?.id)
+        formRef.current?.setFieldsValue('avatar', data?.id)
         showToast({ title: `${message}`, icon: status?"success":'error', duration: 2000 });
         /*if(){
           formIt.setErrorMessage('userName', '这是自定义错误xxxxx')
@@ -135,7 +136,7 @@ image_id: 118*/
         ...rest,
         // file_id: currentFileId,
         // is_published: isPublished
-        avatar: '1',
+        // avatar: '1',
         // fileList: baseURL+'/static/uploaded_files/30585631-16df-4ab1-99a8-016d003fcd22.jpg'
       };
 
@@ -317,9 +318,9 @@ image_id: 118*/
                 </RadioGroup>
               </FormItem>
               <FormItem
-                name="file"
+                name="avatar"
                 mutiLevel
-                // required
+                required
                 // layout="vertical"
                 label={<>
                   <Text style={{color: 'red', marginLeft: '-6px'}}>*</Text>上传图片

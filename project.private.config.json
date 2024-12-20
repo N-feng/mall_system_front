@@ -10,6 +10,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/verificationAdd/index",
+          "pathName": "pages/verificationAdd/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/storesManagementDetail/index",
           "pathName": "pages/storesManagementDetail/index",
           "query": "shop_id=1",
