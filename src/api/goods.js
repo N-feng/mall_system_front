@@ -21,6 +21,20 @@ export function deleteGoods(data) {
     data
   });
 }
+export function getGoods(data) {
+  return apiRequest({
+    url: `/goods/info/goods_detail/`,
+    method: 'GET',
+    data
+  });
+}
+export function updateGoods(data) {
+  return apiRequest({
+    url: `/goods/info/update_goods/`,
+    method: 'POST',
+    data
+  });
+}
 
 
 

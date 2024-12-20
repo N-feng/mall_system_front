@@ -112,6 +112,12 @@ export default function GoodsManagement(props) {
       url: `/pages/goodsManagementDetail/index?process_id=${props?.process_id || process_id}`,
     });
   }
+  const clickEdiBtn = (process_id) => {
+    console.log('process_id: ', process_id);
+    navigateTo({
+      url: `/pages/goodsManagementEdit/index?process_id=${props?.process_id || process_id}`,
+    });
+  }
   const clickDeleteBtn = (id) => {
     deleteGoods({
       product_id: id
@@ -196,7 +202,7 @@ export default function GoodsManagement(props) {
                 <View className="left">
                 </View>
                 <View className="right">
-                  <Button plain hairline round type="info" size="mini" onClick={()=>clickAddBtn(a.id)}>编辑商品</Button>
+                  <Button plain hairline round type="info" size="mini" onClick={()=>clickEdiBtn(a.id)}>编辑商品</Button>
                   <Button plain hairline round type="danger" size="mini" onClick={()=>clickDeleteBtn(a.id)}>删除商品</Button>
                 </View>
               </View>

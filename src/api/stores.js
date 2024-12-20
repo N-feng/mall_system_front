@@ -7,6 +7,13 @@ export function fetchStoresList(data) {
     data
   });
 }
+export function getStores(data) {
+  return apiRequest({
+    url: `/user/store/get_store_detail/`,
+    method: 'GET',
+    data
+  });
+}
 export function updateStores(data) {
   return apiRequest({
     url: `/user/store/update_store_info/`,

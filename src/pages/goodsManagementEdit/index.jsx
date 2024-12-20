@@ -19,7 +19,7 @@ import { addIntention } from "@/api/intention";
 import FormSelect from "@/components/formSelect";
 import KeySearch from "@/pages/intentionDetail/components/keySearch";
 import styles from "@/pages/intentionDetail/index.module.less";
-import {addGoods, getGoods} from "@/api";
+import {updateGoods, getGoods} from "@/api";
 import {uploadImage} from "@/api/upload";
 import CustomUploader from "@/components/customUploader";
 import {mockGoods} from "@/utils/utils";
@@ -110,21 +110,44 @@ image_id: 118*/
       const _data = {
         ...rest,
         file_id: currentFileId,
-        is_published: isPublished
+        is_published: isPublished,
+        file_path: avatarUrl,
+        product_id: process_id
       };
 
       console.log('currentFile', currentFile)
       console.log('currentFileId', currentFileId)
       console.log('_data', _data)
-      addGoods(_data).then((res)=>{
+      updateGoods(_data).then((res)=>{
         const {message, status} = res
         showToast({ title: `${message}`, icon: status?"success":'error', duration: 2000 });
         // handleBack(data?.id);
+        handleBack()
       }).finally(() => {
         setLoading(false);
       })
     });
   };
+
+  const getGoodInfo = useCallback(async () => {
+    const { data = {} } = await getGoods({ product_id: process_id});
+    console.log('data: ', data);
+    setGoodInfo(data);
+
+    setTimeout(() => {
+      formIt.setFields({
+        category: data.category,
+        name: data.name,
+        description: data.description,
+        is_published: data.is_published,
+        price: data.price,
+        stock: data.stock,
+        file_path: baseURL+data.file_path,
+      });
+      setAvatarUrl(baseURL+data.file_path)
+      setCurrentFile(baseURL+data.file_path)
+    }, 0);
+  }, [formIt, process_id, baseURL]);
 
   const handleBack = () => {
     setTimeout(() => {
@@ -140,6 +163,13 @@ image_id: 118*/
       setLoading(false);
     }, 2000);
   };
+
+  useEffect(() => {
+    if (process_id) {
+      getGoodInfo();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [process_id]);
 
   useEffect(() => {
     console.log('currentFileId changed:', currentFileId);

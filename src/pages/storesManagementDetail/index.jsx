@@ -19,7 +19,7 @@ import { addIntention } from "@/api/intention";
 import FormSelect from "@/components/formSelect";
 import KeySearch from "@/pages/intentionDetail/components/keySearch";
 import styles from "@/pages/intentionDetail/index.module.less";
-import {updateStores} from "@/api";
+import {updateStores, getStores} from "@/api";
 import {uploadImage} from "@/api/upload";
 import CustomUploader from "@/components/customUploader";
 import {mockGoods} from "@/utils/utils";
@@ -45,20 +45,21 @@ export default function GoodsManagementDetail() {
   console.log('shop_id: ', shop_id);
 
   const getShopInfo = useCallback(async () => {
-    // const { results = {} } = await getContact(id);
-    // setShopInfo(results);
+    const { data = {} } = await getStores({ store_id: shop_id});
+    console.log('data: ', data);
+    setShopInfo(data);
 
     setTimeout(() => {
       formIt.setFields({
-        name: '商家的店铺1',
-        avatar: '1',
-        status: "closed",
-        description: '',
-        fileList: baseURL+'/static/uploaded_files/30585631-16df-4ab1-99a8-016d003fcd22.jpg'
+        name: data.name,
+        avatar: data.avatar,
+        status: data.status,
+        description: data.description,
+        fileList: baseURL+data.avatar
       });
-      setAvatarUrl(baseURL+'/static/uploaded_files/30585631-16df-4ab1-99a8-016d003fcd22.jpg')
+      setAvatarUrl(baseURL+data.avatar)
     }, 0);
-  }, [formIt, baseURL]);
+  }, [formIt, shop_id, baseURL]);
 
   useEffect(() => {
     if (shop_id) {
@@ -145,6 +146,7 @@ image_id: 118*/
         const {message, status} = res
         showToast({ title: `${message}`, icon: status?"success":'error', duration: 2000 });
         // handleBack(data?.id);
+        handleBack()
       }).finally(() => {
         setLoading(false);
       })
