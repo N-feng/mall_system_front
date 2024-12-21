@@ -1,5 +1,5 @@
 import { View, Text, } from "@tarojs/components";
-import Taro, {useLoad, redirectTo, navigateTo, getEnv, ENV_TYPE, switchTab, setStorageSync, useShareAppMessage } from "@tarojs/taro";
+import Taro, {useLoad, redirectTo, navigateTo, getEnv, ENV_TYPE, switchTab, setStorageSync, useShareAppMessage, EventChannel } from "@tarojs/taro";
 import userStore from "@/store/userStore";
 import {Image, Tag, Icon, Col, Row, Tab, Button} from "@antmjs/vantui";
 import auditIcon from "@/assets/image/audit-icon.svg";

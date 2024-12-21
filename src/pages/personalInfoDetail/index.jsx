@@ -313,7 +313,7 @@ export default function GoodsManagementDetail() {
                 />
               </FormItem>
               <FormItem
-                name="file"
+                name="file_id"
                 mutiLevel
                 // required
                 // layout="vertical"

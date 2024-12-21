@@ -1,5 +1,6 @@
 export const APP_NAME = `MIMS_MINIAPP`;
 export const APP_AUTH_KEY = `MIMS_MINIAPP_AUTH`;
+export const APP_TAB_BAR_KEY = `tabParams`;
 export const APP_API_KEY_PREFIX = `Bearer`;
 
 export const CUSTOMER_KHFL = `customer_khfl`;

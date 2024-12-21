@@ -46,7 +46,8 @@ export default function GoodsManagement(props) {
       } = await fetchGoodsList({
         page: customPage || currentPage + 1,
         page_size: 10,
-        search: search || searchVal,
+        // search: search || searchVal,
+        name: search || searchVal,
         type: tab,
       });
       const _isFinished = cur_page_num >= total_page;
@@ -187,9 +188,9 @@ export default function GoodsManagement(props) {
                 />
                 <View className="paragraph">
                   {
-                    a.description.length>10?<Ellipsis rows={2} hiddenAction>
-                      {a.description}
-                    </Ellipsis>:<Text>{a.description}</Text>
+                    a.name.length>10?<Ellipsis rows={2} hiddenAction>
+                      {a.name}
+                    </Ellipsis>:<Text>{a.name}</Text>
                   }
 
                 </View>

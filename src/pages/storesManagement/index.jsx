@@ -181,15 +181,16 @@ export default function GoodsManagement(props) {
                   style={{marginRight: '15px'}}
                 />
                 <View className="paragraph">
-                  {
-                    a.description.length>10?<Ellipsis rows={2} hiddenAction>
-                      {a.description}
-                    </Ellipsis>:<Text>{a.description}</Text>
-                  }
-
+                  {a.name}
                 </View>
                 <View className="right">
-                  <View className="total">{a.name}</View>
+                  <View className="total">
+                    {
+                      a.description.length>10?<Ellipsis rows={2} hiddenAction>
+                        {a.description}
+                      </Ellipsis>:<Text>{a.description}</Text>
+                    }
+                  </View>
                   {/* <View className="price">¥{a.price}</View> */}
                   {/* <View className="total">共{a.stock}件</View> */}
                 </View>

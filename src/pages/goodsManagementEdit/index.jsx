@@ -416,7 +416,7 @@ image_id: 118*/
               onClick={throttle(handleSubmit, 2 * 1000)}
               loading={loading}
             >
-              创建商品
+              编辑商品
             </Button>
           </Form>
         </View>

@@ -120,6 +120,7 @@ image_id: 118*/
         const {message, status} = res
         showToast({ title: `${message}`, icon: status?"success":'error', duration: 2000 });
         // handleBack(data?.id);
+        handleBack()
       }).finally(() => {
         setLoading(false);
       })

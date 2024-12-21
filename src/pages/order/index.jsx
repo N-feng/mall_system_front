@@ -10,7 +10,7 @@ import {
   useDidShow,
   getCurrentPages,
   usePullDownRefresh,
-  stopPullDownRefresh, navigateTo, getCurrentInstance,getStorageSync,removeStorageSync
+  stopPullDownRefresh, navigateTo, getCurrentInstance,getStorageSync,removeStorageSync, EventChannel
 } from "@tarojs/taro";
 import { fetchAuditList } from "@/api/audit";
 import Search from "@/components/search";
@@ -24,7 +24,6 @@ export default function Order() {
 
   var pages = getCurrentPages();
   const tempTab = getStorageSync('tabParams');
-  console.log("params",tempTab);
   // 处理参数
   // removeStorageSync('tabParams'); // 可选：使用后清除
 
@@ -95,6 +94,9 @@ export default function Order() {
       // 应承编辑页的刷新操作 暂时weapp起效，h5不起效
       currPage?.setData({ needRefresh: false });
     }
+    if (tempTab.key !== getStorageSync('tabParams').key) {
+      setTab(getStorageSync('tabParams').key)
+    }
   });
 
   useEffect(() => {
@@ -117,8 +119,6 @@ export default function Order() {
       url: `/pages/orderDetail/index`,
     });
   }
-
-  console.log("userInfo", userInfo);
 
   return (
     <View className="orderPage">

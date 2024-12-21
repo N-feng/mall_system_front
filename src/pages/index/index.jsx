@@ -123,6 +123,7 @@ export default function Index() {
     } = await fetchGoodsList({
       page: currentPage + 1,
       page_size: 10,
+      name: searchVal
     });
     const _isFinished = cur_page_num >= total_page;
 
@@ -180,9 +181,9 @@ export default function Index() {
           <View style={{ backgroundImage: `url(${baseURL+item?.file_path})` }} className="img"></View>
           <View className="title">
             {
-              item.description.length>10?<Ellipsis rows={2} hiddenAction>
-                {item.description}
-              </Ellipsis>:<Text>{item.description}</Text>
+              item.name.length>10?<Ellipsis rows={2} hiddenAction>
+                {item.name}
+              </Ellipsis>:<Text>{item.name}</Text>
             }
           </View>
           {item.isCutPrice && <Text className="cutPrice">最近大降价</Text>}
@@ -219,11 +220,9 @@ export default function Index() {
   };
 
   useLoad(() => {
-    console.log("Page loaded.");
   });
 
   const initPage = () => {
-    console.log("useDidShow", userInfo);
     if (!userInfo) {
       handleRedirectToLogin();
     }
