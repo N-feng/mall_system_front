@@ -29,6 +29,7 @@ export default function GoodsManagementDetail() {
   const [userObj, setUserObj] = useState()
   const formIt = Form.useForm();
   const [currentFileId, setCurrentFileId] = useState(null)
+  const baseURL = process.env.TARO_APP_BASE_API;
 
   useEffect(() => {
     formIt.registerRequiredMessageCallback((label) => {
@@ -48,6 +49,8 @@ export default function GoodsManagementDetail() {
             const {wechat_avatar} = data
             if(wechat_avatar){
               setAvatarUrl(wechat_avatar)
+            } else {
+              setAvatarUrl(baseURL+data.file_path)
             }
           }
         }
@@ -83,8 +86,9 @@ export default function GoodsManagementDetail() {
       showToast({ title: `${message}`, icon: status?"success":'error', duration: 2000 });
       setLoading(false);
       // handleBack(data?.id);
+      handleBack()
     });
-  }, [searchData, formIt]);
+  }, [searchData, currentFileId, formIt]);
 
   const handleBack = () => {
     setTimeout(() => {
@@ -129,14 +133,14 @@ export default function GoodsManagementDetail() {
     uploadAvatar(e.detail.avatarUrl)
   }
 
-  const getList = ()=>{
-    fetchHomePageList().then(res=>{
+  // const getList = ()=>{
+  //   fetchHomePageList().then(res=>{
 
-    })
-  };
-  useEffect(() => {
-    getList()
-  }, []);
+  //   })
+  // };
+  // useEffect(() => {
+  //   getList()
+  // }, []);
 
   const uploadAvatar = async (url) => {
     const { token = "" } = userStore.getUserInfo();

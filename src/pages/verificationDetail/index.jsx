@@ -2,7 +2,7 @@
  * @Description: 新增客户编辑页
  */
 import {useCallback, useState, useEffect, useRef} from "react";
-import { View } from "@tarojs/components";
+import { View, Button as TaroButton } from "@tarojs/components";
 import {navigateBack, getCurrentPages, showToast, getCurrentInstance} from "@tarojs/taro";
 import {
   Form,
@@ -10,7 +10,7 @@ import {
   Button,
   Field,
   RadioGroup,
-  Radio, Uploader, Toast, Switch,
+  Radio, Uploader, Toast, Switch, Image, Icon,
 } from "@antmjs/vantui";
 import cns from "classnames";
 import { throttle } from "lodash";
@@ -23,10 +23,11 @@ import {addGoods, addVerification, examineVerification, fetchApplicationDetail, 
 import {uploadImage} from "@/api/upload";
 import CustomUploader from "@/components/customUploader";
 import {mockGoods} from "@/utils/utils";
+import userStore from "@/store/userStore";
 
 export default function VerificationDetail() {
-  const instance = getCurrentInstance();
-  const { id, intention_id } = instance.router.params;
+  const ins = getCurrentInstance();
+  const { id, intention_id } = ins.router.params;
   const [keySearchVisible, setKeySearchVisible] = useState(false);
   const [visitHidden, setVisitHidden] = useState(true); // 默认隐藏拜访
   const [searchData, setSearchData] = useState(null); // 拜访携带信息
@@ -36,14 +37,20 @@ export default function VerificationDetail() {
   const formIt = Form.useForm();
   const [productList] = useState(mockGoods())
   const [userObj, setUserObj] = useState()
+  const [avatarUrl1, setAvatarUrl1] = useState("")
+  const [avatarUrl2, setAvatarUrl2] = useState("")
+  const baseURL = process.env.TARO_APP_BASE_API;
+  const userInfo = userStore.getUserInfo();
 
 
   const getApplicationDetail = () => {
-    fetchApplicationDetail({id: id}).then(res => {
+    fetchApplicationDetail().then(res => {
       if(res){
         const {data, status} = res
         if(status){
           setUserObj(data)
+          setAvatarUrl1(baseURL+data.id_card_front)
+          setAvatarUrl2(baseURL+data.id_card_back)
           formIt.setFields(data)
           if(data){
           }
@@ -242,7 +249,43 @@ export default function VerificationDetail() {
                 name="id_card_front"
                 valueFormat={(e) => e.detail}
               >
-                <Field
+                {
+                  process.env.TARO_ENV === 'weapp' && <TaroButton
+                    className="no-border"
+                    style={{backgroundColor: 'rgb(247, 248, 250)', width: '88px', height: '88px',
+                      display: 'flex', justifyContent: 'center', alignItems: 'center',
+                      padding: '0',
+                      marginLeft: '0',
+                    }}
+                    buttonStyle="border: none;"
+                    open-type="chooseAvatar"
+                    // onChooseAvatar={handleChooseAvatar1}
+                  >
+                    {avatarUrl1 ? (
+                      <Image
+                        // round
+                        width="100%"
+                        height="100%"
+                        src={avatarUrl1}
+                        // onClick={handleGetUserInfo}
+                      />
+                    ) : (
+                      <Icon
+                        name="photo-o"
+                        size="26px"
+                        className="van-icon van-icon-photograph van-uploader__upload-icon"
+                      ></Icon>
+                    )}
+                  </TaroButton>
+                }
+                {
+                  process.env.TARO_ENV === 'h5' && 
+                  <Uploader name="file1" accept="image" 
+                    // onDelete={deleteFile1} 
+                    maxCount={1}
+                  ></Uploader>
+                }
+                {/* <Field
                   placeholderClass={styles["filed-placeholder"]}
                   placeholder="请输入身份证正面"
                   border={false}
@@ -250,14 +293,49 @@ export default function VerificationDetail() {
                   onInput={(e) => {
                     formIt?.setFieldsValue("id_card_front", (e?.detail ?? "").trim());
                   }}
-                />
+                /> */}
               </FormItem>
               <FormItem
                 label="身份证反面"
                 name="id_card_back"
                 valueFormat={(e) => e.detail}
               >
-                <Field
+                {
+                  process.env.TARO_ENV === 'weapp' && <TaroButton
+                    className="no-border"
+                    style={{backgroundColor: 'rgb(247, 248, 250)', width: '88px', height: '88px',
+                      display: 'flex', justifyContent: 'center', alignItems: 'center',
+                      padding: '0',
+                      marginLeft: '0',
+                    }}
+                    buttonStyle="border: none;"
+                    open-type="chooseAvatar"
+                    // onChooseAvatar={handleChooseAvatar2}
+                  >
+                    {avatarUrl2 ? (
+                      <Image
+                        // round
+                        width="100%"
+                        height="100%"
+                        src={avatarUrl2}
+                        // onClick={handleGetUserInfo}
+                      />
+                    ) : (
+                      <Icon
+                        name="photo-o"
+                        size="26px"
+                        className="van-icon van-icon-photograph van-uploader__upload-icon"
+                      ></Icon>
+                    )}
+                  </TaroButton>
+                }
+                {
+                  process.env.TARO_ENV === 'h5' && <Uploader name="file1" accept="image" 
+                  // onDelete={deleteFile2} 
+                    maxCount={1}
+                  ></Uploader>
+                }
+                {/* <Field
                   placeholderClass={styles["filed-placeholder"]}
                   placeholder="请输入身份证反面"
                   border={false}
@@ -265,7 +343,7 @@ export default function VerificationDetail() {
                   onInput={(e) => {
                     formIt?.setFieldsValue("id_card_back", (e?.detail ?? "").trim());
                   }}
-                />
+                /> */}
               </FormItem>
               <FormItem
                 label="联系人信息"
@@ -285,40 +363,49 @@ export default function VerificationDetail() {
                   }}
                 />
               </FormItem>
-              <FormItem
-                label="是否通过"
-                name="status"
-                // valueKey="checked"
-              >
-                <Switch checked={isPublished} onChange={(e) => {
-                  console.log(e.detail);
-                  setPublished(e.detail);
-                }}
-                />
-              </FormItem>
-              <FormItem
-                label="审核意见"
-                name="review_comment"
-                required
-              >
-                <Field
-                  className={styles.textarea}
-                  placeholderClass={styles["textarea-placeholder"]}
-                  type="textarea"
-                  placeholder="请输入审核意见"
-                  autosize={{ minHeight: "30px" }}
-                  border={false}
-                />
-              </FormItem>
+              {
+                userInfo?.role_id === 3 &&
+                  <FormItem
+                    label="是否通过"
+                    name="status"
+                    // valueKey="checked"
+                  >
+                    <Switch checked={isPublished} onChange={(e) => {
+                      console.log(e.detail);
+                      setPublished(e.detail);
+                    }}
+                    />
+                  </FormItem>
+              }
+              {
+                userInfo?.role_id === 3 &&
+                  <FormItem
+                    label="审核意见"
+                    name="review_comment"
+                    required
+                  >
+                    <Field
+                      className={styles.textarea}
+                      placeholderClass={styles["textarea-placeholder"]}
+                      type="textarea"
+                      placeholder="请输入审核意见"
+                      autosize={{ minHeight: "30px" }}
+                      border={false}
+                    />
+                  </FormItem>
+              }
             </View>
-            <Button
-              type="primary"
-              className="van-button-submit"
-              onClick={throttle(handleSubmit, 2 * 1000)}
-              loading={loading}
-            >
-              提交
-            </Button>
+            {
+              userInfo?.role_id === 3 &&
+              <Button
+                type="primary"
+                className="van-button-submit"
+                onClick={throttle(handleSubmit, 2 * 1000)}
+                loading={loading}
+              >
+                提交
+              </Button>
+            }
           </Form>
         </View>
       </View>

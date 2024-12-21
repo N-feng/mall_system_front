@@ -31,6 +31,7 @@ export default defineAppConfig({
     "pages/verificationDetail/index",
   ],
   tabBar: {
+    // custom: true,
     list: [
       {
         iconPath: "./assets/image/tabbar-icon-home.png",

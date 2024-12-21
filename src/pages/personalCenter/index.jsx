@@ -1,13 +1,13 @@
-import { View, Text, Button} from "@tarojs/components";
+import { View, Text, } from "@tarojs/components";
 import Taro, {useLoad, redirectTo, navigateTo, getEnv, ENV_TYPE, switchTab, setStorageSync, useShareAppMessage } from "@tarojs/taro";
 import userStore from "@/store/userStore";
-import {Image, Tag, Icon, Col, Row, Tab} from "@antmjs/vantui";
+import {Image, Tag, Icon, Col, Row, Tab, Button} from "@antmjs/vantui";
 import auditIcon from "@/assets/image/audit-icon.svg";
 import logoutIcon from "@/assets/image/logout-icon.svg";
 import {useEffect,useState} from "react";
 
 import {sellerTabList, userTabList} from "@/utils/utils";
-import { fetchUserInfo } from "@/api";
+import { fetchUserInfo, fetchApplicationDetail } from "@/api";
 import "./index.less";
 
 
@@ -84,6 +84,30 @@ export default function Index() {
   },[])*/
   const handleChooseAvatar = async (e) => {
     setAvatarUrl(e.detail.avatarUrl)
+  }
+
+  const handleVerification = async (e) => {
+    fetchApplicationDetail().then(res => {
+      if(res){
+        const {data, status} = res
+        console.log('data: ', data);
+        console.log('status: ', status);
+        if(status){
+          setUserObj(data)
+          // formIt.setFields(data)
+          if(data.status === 'pending'){
+            navigateTo({
+              url: `/pages/verificationDetail/index`,
+            });
+          } else {
+            navigateTo({
+              url: `/pages/verificationAdd/index`,
+            });
+          }
+          
+        }
+      }
+    })
   }
 
   useShareAppMessage((res) => {
@@ -236,14 +260,19 @@ export default function Index() {
             }
             {
               userInfo?.role_id === 2 && <Col span="6">
-                <View className="item" onClick={() => {
-                  navigateTo({
-                    url: `/pages/verificationAdd/index`,
-                  });
-                }}
-                >
+                <View className="item" onClick={handleVerification}>
                   <Icon name="certificate" size="32px" className="icon" />
                   <Text className="text">实名认证</Text>
+                </View>
+              </Col>
+            }
+            {
+              userInfo?.role_id === 2 && <Col span="6">
+                <View className="item">
+                  <Button openType="share" size="32px">
+                    <Icon name="share-o" size="32px" className="icon" />
+                    <Text className="text">商家分享</Text>
+                  </Button>
                 </View>
               </Col>
             }

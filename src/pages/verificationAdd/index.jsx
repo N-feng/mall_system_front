@@ -19,7 +19,7 @@ import { addIntention } from "@/api/intention";
 import FormSelect from "@/components/formSelect";
 import KeySearch from "@/pages/intentionDetail/components/keySearch";
 import styles from "@/pages/intentionDetail/index.module.less";
-import {addGoods, addVerification} from "@/api";
+import {addGoods, addVerification,fetchApplicationDetail} from "@/api";
 import {uploadImage} from "@/api/upload";
 import CustomUploader from "@/components/customUploader";
 import {mockGoods} from "@/utils/utils";
@@ -36,6 +36,8 @@ export default function AddVerificationDetail() {
   const formIt = Form.useForm();
   const [currentFileId1, setCurrentFileId1] = useState(null)
   const [currentFileId2, setCurrentFileId2] = useState(null)
+  const [avatarUrl1, setAvatarUrl1] = useState("")
+  const [avatarUrl2, setAvatarUrl2] = useState("")
 
   useEffect(() => {
     formIt.registerRequiredMessageCallback((label) => {
@@ -44,7 +46,6 @@ export default function AddVerificationDetail() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [avatarUrl1, setAvatarUrl1] = useState("")
   const handleChooseAvatar1 = async (e) => {
     console.log(e)
     setAvatarUrl1(e.detail.avatarUrl)
@@ -93,7 +94,6 @@ image_id: 118*/
     }
   }
 
-  const [avatarUrl2, setAvatarUrl2] = useState("")
   const handleChooseAvatar2 = async (e) => {
     console.log(e)
     setAvatarUrl2(e.detail.avatarUrl)

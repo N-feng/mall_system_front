@@ -31,13 +31,13 @@ import {
 } from "@antmjs/vantui";
 import {getVisitRecords} from "@/api/visit";
 import {addIntention} from "@/api/intention";
+import {addOrRemoveCart, fetchCartsList} from "@/api/cart";
+import Empty from "@/components/empty";
 import KeySearch from "./components/keySearch";
 import styles from "./index.less";
 // eslint-disable-next-line import/first
 import {goodsList, sku, resolveAfter2Seconds, mockImages} from "@/utils/utils";
 // eslint-disable-next-line import/first
-import Empty from "@/components/empty";
-import {addOrRemoveCart, fetchCartsList} from "@/api/cart";
 import {addOrder} from "@/api/order";
 
 export default function Cart() {

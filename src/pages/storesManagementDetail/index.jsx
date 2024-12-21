@@ -55,9 +55,9 @@ export default function GoodsManagementDetail() {
         avatar: data.avatar,
         status: data.status,
         description: data.description,
-        fileList: baseURL+data.avatar
+        fileList: baseURL+data.file_path
       });
-      setAvatarUrl(baseURL+data.avatar)
+      setAvatarUrl(baseURL+data.file_path)
     }, 0);
   }, [formIt, shop_id, baseURL]);
 

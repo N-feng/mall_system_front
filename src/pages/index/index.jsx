@@ -193,9 +193,12 @@ export default function Index() {
                 <Icon name="cart-o" size="18px" />
               </View>
             }*/}
-            <View className="btn" onClick={(e)=>clickAddCartBtn(e,item.id)}>
-              <Icon name="cart-o" size="18px" />
-            </View>
+            {
+              userInfo?.role_id === 1 && 
+                <View className="btn" onClick={(e)=>clickAddCartBtn(e,item.id)}>
+                  <Icon name="cart-o" size="18px" />
+                </View>
+            }
           </View>
         </View>
       </View>
